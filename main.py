@@ -5,6 +5,8 @@ import time
 
 # ===================== CONFIG =====================
 
+count=1
+
 BASE_URL = "https://atmosphere.virtuagym.com/user/taherpk/exercise/ajax"
 START_PAGE = 1
 END_PAGE = 131
@@ -32,7 +34,9 @@ def extract_exercises(html: str):
     results = []
 
     for li in soup.select("li.exercise"):
-
+        global count
+        print(f"   → Processing exercise {count}")
+        count += 1
         def val(selector):
             el = li.select_one(selector)
             return el["value"].strip() if el and el.has_attr("value") else ""
