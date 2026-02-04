@@ -8,8 +8,8 @@ import mimetypes
 
 load_dotenv()
 
-INPUT_CSV = "virtuagym_exercises.csv"
-OUTPUT_CSV = "virtual_gym_exercises_with_s3_urls.csv"
+INPUT_CSV = "output_batch_1.csv"
+OUTPUT_CSV = "new_output_batch_1.csv"
 
 S3_BUCKET = os.getenv("AWS_BUCKET_NAME")
 S3_BASE_PATH = "exercises"
@@ -20,6 +20,7 @@ os.makedirs(TMP_DIR, exist_ok=True)
 
 s3 = boto3.client("s3")
 
+count=1
 
 def download_file(url: str, local_path: str):
     response = requests.get(url, stream=True, timeout=60)
@@ -70,7 +71,11 @@ with open(INPUT_CSV, newline="", encoding="utf-8") as infile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
+        print("🚀 Starting upload to S3...")
         for row in reader:
+            print(f"🔄 Processing exercise {count}: {row.get('name')}")
+            count += 1
+            
             s3_video_url = ""
             s3_thumbnail_url = ""
 
