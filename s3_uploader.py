@@ -94,6 +94,7 @@ with open(INPUT_CSV, newline="", encoding="utf-8") as infile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
+        print("🚀 Starting upload to S3...")
         for row in reader:
             gif_s3_url = ""
 

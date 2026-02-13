@@ -10,7 +10,7 @@ count=1
 BASE_URL = "https://atmosphere.virtuagym.com/user/taherpk/exercise/ajax"
 START_PAGE = 1
 END_PAGE = 131
-OUTPUT_CSV = "virtuagym_exercises.csv"
+OUTPUT_CSV = "output_batch_1.csv"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
